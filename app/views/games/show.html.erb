@@ -1,0 +1,45 @@
+<div class="border rounded w-50 mx-auto">
+
+  <div class="bg-secondary rounded-top">
+    <h2 class="text-center p-3 text-light">Fiche de votre jeu</h2> 
+
+  </div>
+  <div class="p-3">
+    <p>
+      <strong>Name:</strong>
+      <%= @game.name %>
+    </p>
+
+    <p>
+      <strong>Description:</strong>
+      <%= @game.description %>
+    </p>
+
+    <p>
+      <strong>Year:</strong>
+      <%= @game.year %>
+    </p>
+
+    <p>
+      <strong>Support:</strong>
+      <%= @game.support %>
+    </p>
+
+    <p>
+      <strong>Genre:</strong>
+      <%= @game.genre %>
+    </p>
+    <% if @game.image.blank? %>
+        Pas d'image enregistré
+
+    <% else %>
+    <div style="width:200px; height:auto">
+      <%= image_tag(@game.image, class:"mw-100") %>     
+    </div>
+    <% end %>
+
+    <br /><br />
+    <%= link_to 'Editer', edit_game_path(@game) %> |
+    <%= link_to 'Retour', games_path %>
+  </div>
+</div>

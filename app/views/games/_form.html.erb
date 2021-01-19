@@ -1,0 +1,48 @@
+<%= form_with(model: game, local: true) do |form| %>
+  <% if game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(game.errors.count, "error") %> prohibited this game from being saved:</h2>
+
+      <ul>
+        <% game.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field form-group">
+
+    <%= form.text_field :name, class:"form-control", placeholder:"Nom" %>
+  </div>
+
+  <div class="field form-group">
+    <br />
+    <%= form.text_area :description, class:"form-control", placeholder:"description" %>
+  </div>
+
+  <div class="field form-group">
+    <br />
+    <%= form.number_field :year, class:"form-control", placeholder:"Année" %>
+  </div>
+
+  <div class="field form-group">
+    <br />
+    <%= form.text_field :support, class:"form-control", placeholder:"Plateforme" %>
+  </div>
+
+  <div class="field form-group">
+    <br />
+    <%= form.text_field :genre, class:"form-control", placeholder:"Type de jeu" %>
+  </div>
+
+  <div class="file form-groupd">
+    <br />
+    <%= form.file_field :image, class:"form-control" %>
+  </div>
+
+  <div class="actions">
+    <br />
+    <%= form.submit "Enregistrer", class:"btn btn-secondary" %>
+  </div>
+<% end %>
