@@ -11,7 +11,7 @@ Fonctionnement:<br>
 3) Accéder à l'appli à l'url "localhost:3000"<br>
 -Si une erreur apparait, coupez le server, utilisez la commande "rails db:migrate" dans votre terminal puis relancez le server<br>
 4) Créez vous un compte<br>
-5) Ajouter des jeux à votre liste via l'onglet "Ajouter un jeu"<br>
+5) Ajoutez des jeux à votre liste via l'onglet "Ajouter un jeu"<br>
 6) La page d'administration est accéssible à l'url "localhost:3000/admin"<br>
 7) Le login par défaut est "admin@example.com", le mot de passe: "password"<br>
 -Si vous ne parvenez pas à vous connecter, coupez le server, utilisez la commande rails "db:seed" dans votre terminal puis relancez le server
