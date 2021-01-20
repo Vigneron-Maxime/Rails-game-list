@@ -1,66 +1,72 @@
 <h1>Votre liste de jeux</h1>
 <div class="d-flex justify-content-around flex-wrap">
-  <% @games.each do |game| %>
-    <div class="card" style="width: 18rem;">
+  <% if @games.empty? %>
+    <span class="p-3">Vous n'avez aucun jeu enregistré =(</span>
+  <% else %>
+    <% @games.each do |game| %>
+      <% if game.user == current_user %>
+        <div class="card" style="width: 18rem;">
 
-      <% if game.image.blank? %>
-        <%= image_tag('no_image.png', class:"card-img-top mw-100") %>
-      <% else %>
-        <%= image_tag(game.image, class:"card-img-top mw-100") %>
+          <% if game.image.blank? %>
+            <%= image_tag('no_image.png', class:"card-img-top mw-100") %>
+          <% else %>
+            <%= image_tag(game.image, class:"card-img-top mw-100") %>
+          <% end %>
+
+          <div class="card-body">
+
+            <h5 class="card-title fw-bold">
+              <% if game.name.blank? %>
+                N/A
+              <% else %>
+                <%= game.name %>
+              <% end %>
+            </h5>
+
+            <p class="card-text fw-light">
+              <% if game.description.blank? %>
+                N/A
+              <% else %>
+                <%= game.description %>
+              <% end %>
+            </p>
+
+          </div>
+
+          <ul class="list-group list-group-flush">
+
+            <li class="list-group-item"><span class="fw-bold">Année: </span>
+              <% if game.year.blank? %>
+                N/A
+              <% else %>
+                <%= game.year %>
+              <% end %>
+            </li>
+
+            <li class="list-group-item"><span class="fw-bold">Platerforme: </span>
+              <% if game.support.blank? %>
+                N/A
+              <% else %>
+                <%= game.support %>
+              <% end %>
+            </li>
+
+            <li class="list-group-item"><span class="fw-bold">Genre: </span>
+              <% if game.genre.blank? %>
+                N/A
+              <% else %>
+                <%= game.genre %>
+              <% end %>
+            </li>
+            
+          </ul>
+          <div class="card-body">
+            <%= link_to 'Editer', edit_game_path(game), class:"card-link" %>
+            <%= link_to 'Supprimer', game, class:"card-link", method: :delete, data: { confirm: 'Etes-vous sûr?' } %>
+          </div>
+        </div>
       <% end %>
-
-      <div class="card-body">
-
-        <h5 class="card-title fw-bold">
-          <% if game.name.blank? %>
-            N/A
-          <% else %>
-            <%= game.name %>
-          <% end %>
-        </h5>
-
-        <p class="card-text fw-light">
-          <% if game.description.blank? %>
-            N/A
-          <% else %>
-            <%= game.description %>
-          <% end %>
-        </p>
-
-      </div>
-
-      <ul class="list-group list-group-flush">
-
-        <li class="list-group-item"><span class="fw-bold">Année: </span>
-          <% if game.year.blank? %>
-            N/A
-          <% else %>
-            <%= game.year %>
-          <% end %>
-        </li>
-
-        <li class="list-group-item"><span class="fw-bold">Platerforme: </span>
-          <% if game.support.blank? %>
-            N/A
-          <% else %>
-            <%= game.support %>
-          <% end %>
-        </li>
-
-        <li class="list-group-item"><span class="fw-bold">Genre: </span>
-          <% if game.genre.blank? %>
-            N/A
-          <% else %>
-            <%= game.genre %>
-          <% end %>
-        </li>
-        
-      </ul>
-      <div class="card-body">
-        <%= link_to 'Editer', edit_game_path(game), class:"card-link" %>
-        <%= link_to 'Supprimer', game, class:"card-link", method: :delete, data: { confirm: 'Etes-vous sûr?' } %>
-      </div>
-    </div>
+    <% end %>
   <% end %>
 </div>
 

@@ -1,5 +1,7 @@
 class GamesController < ApplicationController
   before_action :set_game, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /games
   # GET /games.json
@@ -14,7 +16,8 @@ class GamesController < ApplicationController
 
   # GET /games/new
   def new
-    @game = Game.new
+    #@game = Game.new
+    @game = current_user.game.build()
   end
 
   # GET /games/1/edit
@@ -24,7 +27,8 @@ class GamesController < ApplicationController
   # POST /games
   # POST /games.json
   def create
-    @game = Game.new(game_params)
+    #@game = Game.new(game_params)
+    @game = current_user.game.build(game_params)
 
     respond_to do |format|
       if @game.save
@@ -61,6 +65,11 @@ class GamesController < ApplicationController
     end
   end
 
+  def correct_user
+    @game = current_user.game.find_by(id: params[:id ]) 
+    redirect_to games_path, notice: "Vous ne pouvez pas faire ça" if @game.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_game
@@ -69,6 +78,6 @@ class GamesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def game_params
-      params.require(:game).permit(:name, :description, :year, :support, :genre, :image)
+      params.require(:game).permit(:name, :description, :year, :support, :genre, :image, :user_id)
     end
 end
