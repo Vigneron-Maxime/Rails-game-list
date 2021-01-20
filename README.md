@@ -1,6 +1,6 @@
 Cette appli permet de créer un compte utilisateur afin de vous créer une liste de jeux-vidéo personnelle.<br>
 Cette appli intègre:<br>
--La gem devise pour la gestion des compte utilisateur: https://github.com/heartcombo/devise<br>
+-La gem devise pour la gestion des comptes utilisateurs: https://github.com/heartcombo/devise<br>
 -La gem Active Storage pour la gestion des images: https://rubygems.org/gems/activestorage/versions/0.1<br>
 -La gem Active Admin pour la gestion des différentes tables de l'appli: https://activeadmin.info/documentation.html<br>
 
